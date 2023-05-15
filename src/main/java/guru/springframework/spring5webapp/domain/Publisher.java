@@ -4,15 +4,12 @@
  */
 package guru.springframework.spring5webapp.domain;
 
+import org.hibernate.Hibernate;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 /**
  *
@@ -97,27 +94,17 @@ public class Publisher {
     public String toString() {
         return "Publisher{" + "id=" + id + ", name=" + name + ", address=" + address + ", city=" + city + ", state=" + state + ", zip=" + zip + '}';
     }
-
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Publisher publisher = (Publisher) o;
+        return id != null && Objects.equals(id, publisher.id);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Publisher other = (Publisher) obj;
-        return Objects.equals(this.id, other.id);
+    public int hashCode() {
+        return getClass().hashCode();
     }
 
 }
