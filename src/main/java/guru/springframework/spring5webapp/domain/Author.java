@@ -71,7 +71,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" + "id=" + id + ", firstname=" + firstname + ", lastName=" + lastName + ", books=" + books + '}';
+        return "Author{" + "id=" + id + ", firstname=" + firstname + ", lastName=" + lastName + '}';
     }
 
     @Override
